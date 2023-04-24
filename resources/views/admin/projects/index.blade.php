@@ -17,6 +17,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">titolo</th>
                     <th scope="col">slug</th>
+                    <th scope="col">label</th>
                     <th scope="col">Abstract</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -27,6 +28,7 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->slug }}</td>
+                    <td>{{ $project->category?->label }}</td>
                     <td>{{ $project->getAbstract() }}</td>
                     <td>
                         <a href="{{ route('admin.projects.show', $project) }}">

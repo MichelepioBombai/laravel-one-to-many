@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\CategorySeeder;
 use App\Models\Project;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -17,6 +18,8 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        
+        
         for($i = 0; $i < 40; $i++)
         {
             $project = new Project;

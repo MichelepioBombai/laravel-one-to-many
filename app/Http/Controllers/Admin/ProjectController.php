@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+
 use App\Models\Project;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -28,7 +31,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::all();
+        return view('admin.projects.create', compact('categories'));
     }
 
     /**
@@ -44,6 +48,7 @@ class ProjectController extends Controller
             'title' => 'required|string|max:100|',
             'text' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg',
+            'category_id' => 'nullable|exists:categories,id'
 
         ],
         [
@@ -54,6 +59,7 @@ class ProjectController extends Controller
             'text.string' => 'il contenuto deve essere una stringa',
             'image.image' => ' il file caricato deve essere un\'immagine',
             'image.mimes' => ' le estensioni accettate per l\'immagine sono jpg, png, jpeg',
+            'category_id.exists' => 'L\'id della categoria non è valido',
 
 
         ]); 
@@ -86,6 +92,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        
         return view('admin.projects.show', compact('project'));
     }
 
@@ -97,7 +104,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+
+        $categories = Category::all();
+        return view('admin.projects.edit', compact('project', 'categories'));
         
     }
 

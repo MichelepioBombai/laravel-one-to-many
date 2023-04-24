@@ -11,9 +11,13 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["title", "slug", "text", "image"];
+    protected $fillable = ["category_id",  "title", "slug", "text", "image"];
 
     public function getAbstract($max = 50) {
         return substr($this->text, 0, $max) . "...";
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 }

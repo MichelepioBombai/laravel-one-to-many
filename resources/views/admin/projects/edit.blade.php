@@ -19,6 +19,17 @@
               <label for="title" class="form-label">title</label>
               <input type="text" class="form-control" id="title" name="title" value="{{ old('title') ?? $project->title }}" />
             </div>
+
+            <div class="row">
+              <div class="col-12"> 
+                <label for="category_id" class="form-label">category</label>
+                <select class="form-select" name="category_id" id="category_id">
+                  <option value="">Non categorizzato</option>
+                  @foreach($categories as $category)
+                    <option @if(old('category_id', $project->category_id) ==  $category->id ) selected @endif value="{{ $category->id }}">{{ $category->label }}</option>
+                  @endforeach
+                </select>
+              </div>
           
             <div class="col-12">
               <label for="image" class="form-label">image</label>

@@ -6,10 +6,16 @@
 @endsection
 
 @section('content')
-<section class="clearfix">
+<section class="card clearfix">
+  <div class="card-body">
     <h2 class="text-muted text-secondary my-5">{{ $project->slug }}</h2>
+    <p>
+      <strong>Categoria: </strong>
+      <span class="badge rounded-pill" style="background-color: {{ $project->category?->color }}">{{ $project->category->label }}</span>
+    </p>
     <img src="{{ asset('storage/' . $project->image) }}" alt="" width="300" class="float-start me-3 mb-1">
     <p>{{ $project->text }}</p>
+  </div>
 </section>
 
 @endsection
