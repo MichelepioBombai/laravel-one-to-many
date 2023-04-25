@@ -22,6 +22,14 @@
         value="{{ $project->slug }}"
     />
 
+    <label for="category_id" class="form-label">Category</label>
+    <select class="form-select" name="category_id" id="category_id">
+        <option value="{{ $project->category_id}}">Non categorizzato</option>
+        @foreach($categories as $category)
+          <option @if(old('category_id') ==  $category->id ) selected @endif value="{{ $category->id }}">{{ $category->label }}</option>
+        @endforeach
+      </select>
+
     <label for="text" class="form-label">text</label>
     <textarea  
     class="form-control" 

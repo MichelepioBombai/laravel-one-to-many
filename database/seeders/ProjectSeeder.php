@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Database\Seeders\CategorySeeder;
 use App\Models\Project;
 use Faker\Generator as Faker;
@@ -23,6 +24,8 @@ class ProjectSeeder extends Seeder
         for($i = 0; $i < 40; $i++)
         {
             $project = new Project;
+            $categories = Category::all()->pluck('id');
+            $project->category_id = $faker->randomElement($categories);
             $project->title = $faker->catchPhrase();
             $project->slug = Str::of($project->title)->slug('-');
             $project->image = $faker->imageUrl(640, 480, 'animals', true);
